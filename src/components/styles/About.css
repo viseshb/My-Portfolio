@@ -36,6 +36,44 @@
   text-wrap: pretty;
 }
 
+@media only screen and (max-width: 767px) {
+  .about-section {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .about-me {
+    width: 100%;
+    max-width: calc(100% - 24px);
+    padding: 36px 0 0;
+  }
+
+  .about-me h3 {
+    font-size: clamp(20px, 5.6vw, 25px);
+    letter-spacing: clamp(3px, 1.4vw, 7px);
+    margin-bottom: 14px;
+  }
+
+  .about-me p {
+    font-size: clamp(16px, 4.5vw, 20px);
+    line-height: 1.7;
+    text-align: left;
+    text-align-last: left;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .about-me {
+    max-width: calc(100% - 18px);
+    padding-top: 30px;
+  }
+
+  .about-me p {
+    font-size: 15px;
+    line-height: 1.72;
+  }
+}
+
 @media only screen and (min-width: 600px) {
   .about-section {
     justify-content: center;
@@ -76,5 +114,4 @@
     line-height: 1.45;
   }
 }
-
 
