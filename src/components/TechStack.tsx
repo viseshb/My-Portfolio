@@ -393,11 +393,12 @@ const TechStack = () => {
       <div className="techstack-details section-container">
         <div className="techstack-details-copy">
           <span className="techstack-eyebrow">Core Stack</span>
-          <h3>Actual tools and systems I build with.</h3>
+          <h3>Core technologies used for AI/ML and backend systems.</h3>
           <p>
-            This block sits below the floating tech balls and supports sticky
-            scrolling on larger screens. You can edit the bullet lists below
-            directly in the component.
+            My work combines backend engineering with machine learning to build
+            scalable systems, AI assistants, and data-driven applications. I
+            focus on production-ready architectures, high performance APIs, and
+            modern AI frameworks used in real-world systems.
           </p>
         </div>
 

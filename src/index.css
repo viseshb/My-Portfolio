@@ -142,9 +142,10 @@ body {
 
 .techstack-details {
   display: grid;
-  grid-template-columns: minmax(240px, 0.9fr) minmax(0, 2fr);
-  gap: 48px;
+  grid-template-columns: minmax(420px, 1.35fr) minmax(0, 25fr);
+  gap: 10px;
   align-items: start;
+  margin: 0 auto;
   padding-bottom: 120px;
 }
 
@@ -154,6 +155,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  max-width: 100%;
+  width: 100%;
 }
 
 .techstack-eyebrow {
@@ -169,13 +172,25 @@ body {
   font-size: clamp(32px, 3vw, 48px);
   line-height: 1.05;
   font-weight: 500;
+  max-width: 18ch;
+  text-align: left;
+  text-align-last: left;
+  text-wrap: balance;
+  hyphens: none;
+  word-break: normal;
+  overflow-wrap: normal;
 }
 
 .techstack-details-copy p {
   margin: 0;
-  max-width: 28rem;
+  width: 100%;
+  max-width: 26rem;
   font-size: 16px;
   line-height: 1.7;
+  text-align: justify;  
+  word-spacing: 0;
+  hyphens: none;
+  text-wrap: pretty;
   color: rgba(234, 229, 236, 0.72);
 }
 
@@ -185,7 +200,7 @@ body {
   gap: 20px;
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1500px) {
   .techstack-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -244,27 +259,42 @@ body {
   }
 
   .techstack-details {
+    width: calc(100% - 28px);
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 24px;
     padding-bottom: 72px;
   }
 
   .techstack-details-copy {
     position: static;
+    gap: 12px;
+    max-width: 100%;
   }
 
   .techstack-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .techstack-details {
-    width: calc(100% - 24px);
+    gap: 16px;
   }
 
-  .techstack-grid {
-    grid-template-columns: 1fr;
+  .techstack-details-copy h3 {
+    max-width: 16ch;
+    font-size: clamp(26px, 5vw, 34px);
+    line-height: 1.14;
+    text-align: left;
+    text-align-last: left;
+    text-wrap: balance;
+    hyphens: none;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
+
+  .techstack-details-copy p {
+    max-width: 30rem;
+    font-size: 15px;
+    line-height: 1.65;
+    text-align: left;
+    text-align-last: left;
+    hyphens: none;
   }
 
   .techstack-card {
@@ -272,11 +302,60 @@ body {
     border-radius: 20px;
   }
 
+  .techstack-card h4 {
+    margin-bottom: 12px;
+    font-size: 18px;
+  }
+
+  .techstack-card li {
+    font-size: 15px;
+    line-height: 1.45;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .techstack-details {
+    width: calc(100% - 20px);
+    gap: 20px;
+  }
+
+  .techstack-details-copy {
+    max-width: 100%;
+  }
+
+  .techstack-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .techstack-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+  }
+
+  .techstack-card {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
   .techstack-details-copy h3 {
-    font-size: 30px;
+    max-width: 12ch;
+    font-size: clamp(24px, 7.2vw, 30px);
+    line-height: 1.08;
+    text-wrap: pretty;
   }
 
   .techstack-details-copy p {
+    max-width: 100%;
     font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .techstack-card h4 {
+    font-size: 17px;
+  }
+
+  .techstack-card li {
+    font-size: 14px;
   }
 }
