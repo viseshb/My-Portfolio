@@ -41,6 +41,57 @@ const techItems = [
     items.findIndex((current) => current.label === item.label) === index
 );
 
+const techStackGroups = [
+  {
+    title: "Frontend",
+    items: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "JavaScript",
+      "Responsive UI Systems",
+    ],
+  },
+  {
+    title: "Backend",
+    items: [
+      "Node.js",
+      "Express",
+      "FastAPI",
+      "REST API Design",
+      "Distributed Services",
+    ],
+  },
+  {
+    title: "AI / ML",
+    items: [
+      "OpenAI APIs",
+      "Claude",
+      "PyTorch",
+      "TensorFlow",
+      "Hugging Face",
+    ],
+  },
+  {
+    title: "Data",
+    items: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "Kafka"],
+  },
+  {
+    title: "Cloud / DevOps",
+    items: ["Docker", "AWS", "GCP", "CI/CD Pipelines", "Linux Workflows"],
+  },
+  {
+    title: "Engineering",
+    items: [
+      "System Design",
+      "Performance Tuning",
+      "Testing",
+      "MCP Integrations",
+      "Production Debugging",
+    ],
+  },
+];
+
 const iconTextures = techItems.map(({ image }) => {
   const texture = textureLoader.load(image);
   texture.colorSpace = THREE.SRGBColorSpace;
@@ -292,50 +343,77 @@ const TechStack = () => {
 
   return (
     <div ref={sectionRef} className="techstack">
-      <h2> My Techstack</h2>
+      <div className="techstack-stage">
+        <h2> My Techstack</h2>
 
-      <Canvas
-        className="tech-canvas"
-        frameloop={isActive ? "always" : "demand"}
-        dpr={isMobile ? 1 : [1, 1.2]}
-        performance={{ min: 0.75 }}
-        gl={{
-          alpha: true,
-          antialias: !isMobile,
-          depth: true,
-          powerPreference: "high-performance",
-          stencil: false,
-        }}
-        camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 80 }}
-        onCreated={({ gl }) => {
-          gl.toneMappingExposure = 1.2;
-          gl.setClearColor(new THREE.Color("#000000"), 0);
-        }}
-      >
-        <ambientLight intensity={0.95} />
-        <spotLight
-          position={[20, 20, 25]}
-          penumbra={1}
-          angle={0.2}
-          color="white"
-          intensity={1.05}
-        />
-        <directionalLight position={[0, 5, -4]} intensity={1} />
+        <Canvas
+          className="tech-canvas"
+          frameloop={isActive ? "always" : "demand"}
+          dpr={isMobile ? 1 : [1, 1.2]}
+          performance={{ min: 0.75 }}
+          gl={{
+            alpha: true,
+            antialias: !isMobile,
+            depth: true,
+            powerPreference: "high-performance",
+            stencil: false,
+          }}
+          camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 80 }}
+          onCreated={({ gl }) => {
+            gl.toneMappingExposure = 1.2;
+            gl.setClearColor(new THREE.Color("#000000"), 0);
+          }}
+        >
+          <ambientLight intensity={0.95} />
+          <spotLight
+            position={[20, 20, 25]}
+            penumbra={1}
+            angle={0.2}
+            color="white"
+            intensity={1.05}
+          />
+          <directionalLight position={[0, 5, -4]} intensity={1} />
 
-        <Suspense fallback={null}>
-          <Physics gravity={[0, 0, 0]} interpolate={false} timeStep={1 / 60}>
-            {isActive ? <Pointer /> : null}
-            {spheres.map((sphere, index) => (
-              <SphereGeo
-                key={index}
-                {...sphere}
-                isActive={isActive}
-                sphereMaterial={sphereMaterial}
-              />
-            ))}
-          </Physics>
-        </Suspense>
-      </Canvas>
+          <Suspense fallback={null}>
+            <Physics gravity={[0, 0, 0]} interpolate={false} timeStep={1 / 60}>
+              {isActive ? <Pointer /> : null}
+              {spheres.map((sphere, index) => (
+                <SphereGeo
+                  key={index}
+                  {...sphere}
+                  isActive={isActive}
+                  sphereMaterial={sphereMaterial}
+                />
+              ))}
+            </Physics>
+          </Suspense>
+        </Canvas>
+      </div>
+
+      <div className="techstack-details section-container">
+        <div className="techstack-details-copy">
+          <span className="techstack-eyebrow">Core Stack</span>
+          <h3>Actual tools and systems I build with.</h3>
+          <p>
+            This block sits below the floating tech balls and supports sticky
+            scrolling on larger screens. You can edit the bullet lists below
+            directly in the component.
+          </p>
+        </div>
+
+        <div className="techstack-grid">
+          {techStackGroups.map((group) => (
+            <section className="techstack-card" key={group.title}>
+              <h4>{group.title}</h4>
+              <ul>
+                {group.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

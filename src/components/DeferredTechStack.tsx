@@ -6,7 +6,9 @@ const TechStack = lazy(loadTechStack);
 const TechStackFallback = () => {
   return (
     <div className="techstack techstack-placeholder" aria-hidden="true">
-      <h2> My Techstack</h2>
+      <div className="techstack-stage">
+        <h2> My Techstack</h2>
+      </div>
     </div>
   );
 };
