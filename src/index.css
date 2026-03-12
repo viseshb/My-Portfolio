@@ -291,7 +291,8 @@ body {
   }
 
   .techstack-details-copy p {
-    max-width: 30rem;
+    width: 100%;
+    max-width: none;
     font-size: 15px;
     line-height: 1.65;
     text-align: left;
@@ -355,7 +356,8 @@ body {
   }
 
   .techstack-details-copy p {
-    max-width: 100%;
+    width: 100%;
+    max-width: none;
     font-size: 15px;
     line-height: 1.6;
   }
