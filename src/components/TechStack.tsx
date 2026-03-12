@@ -395,10 +395,14 @@ const TechStack = () => {
           <span className="techstack-eyebrow">Core Stack</span>
           <h3>Core technologies used for AI/ML and backend systems.</h3>
           <p>
-            My work combines backend engineering with machine learning to build
-            scalable systems, AI assistants, and data-driven applications. I
-            focus on production-ready architectures, high performance APIs, and
-            modern AI frameworks used in real-world systems.
+            Focused on building scalable backend platforms and intelligent AI
+            systems. The stack includes modern API frameworks, distributed
+            services, and machine learning tooling used to develop
+            production-ready applications such as AI assistants, computer
+            vision models, and performance benchmarking systems. Systems are
+            designed with scalability, observability, and performance in
+            mind, ensuring reliable operation for data-intensive and AI-driven
+            workloads.
           </p>
         </div>
 
