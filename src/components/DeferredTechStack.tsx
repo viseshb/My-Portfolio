@@ -9,6 +9,7 @@ const TechStackFallback = () => {
       <div className="techstack-stage">
         <h2> My Techstack</h2>
       </div>
+      <div className="techstack-details techstack-details-placeholder section-container" id="skills" />
     </div>
   );
 };
