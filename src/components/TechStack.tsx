@@ -390,7 +390,7 @@ const TechStack = () => {
         </Canvas>
       </div>
 
-      <div className="techstack-details section-container">
+      <div className="techstack-details section-container" id="skills">
         <div className="techstack-details-copy">
           <span className="techstack-eyebrow">Core Stack</span>
           <h3>Core technologies used for AI/ML and backend systems.</h3>
