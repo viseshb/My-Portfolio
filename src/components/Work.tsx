@@ -1,44 +1,62 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import "./styles/Work.css";
 import WorkImage from "./WorkImage";
 import { MdArrowBack, MdArrowForward } from "react-icons/md";
 
 const projects = [
   {
-    title: "Solid Starters",
-    category: "Low-Code Platform",
-    tools: "Angular, Next.js, NestJS, MongoDB",
-    image: "/images/Solidx.png",
+    id: "context-ai",
+    number: "01",
+    title: "Context-Aware AI Assistant",
+    subtitle: "Developer Intelligence Platform",
+    tools: "Python, MCP, LLMs, FastAPI, Postgres, GitHub, Slack",
+    image: "/projects/context-ai-assistant.png",
+    link: "https://github.com/viseshb",
   },
   {
-    title: "Radix",
-    category: "E-Commerce",
-    tools: "Angular, Next.js, NestJS, CMS",
-    image: "/images/radix.png",
+    id: "flood-segmentation",
+    number: "02",
+    title: "Flood Semantic Segmentation",
+    subtitle: "Deep Learning Computer Vision System",
+    tools: "Python, PyTorch, U-Net, CUDA, ONNX, FastAPI",
+    image: "/projects/flood-segmentation.png",
+    link: "https://github.com/viseshb",
   },
   {
-    title: "Bond Cancellation",
-    category: "Import-Export Automation",
-    tools: "Angular, Next.js, NestJS, Workflows",
-    image: "/images/bond.png",
-  },
-  {
-    title: "Sapphire",
-    category: "CRM Platform",
-    tools: "AngularJS, NestJS, PostgreSQL",
-    image: "/images/sapphire.png",
-  },
-  {
-    title: "Mpro",
-    category: "Insurance Platform",
-    tools: "React.js, Node.js, Microservices",
-    image: "/images/Maxlife.png",
+    id: "effibench-analysis",
+    number: "03",
+    title: "EffiBench Code Analysis",
+    subtitle: "Human vs LLM Algorithm Benchmarking",
+    tools: "Python, EffiBench, Benchmarking, Runtime Analysis",
+    image: "/projects/effibench-analysis.png",
+    link: "https://github.com/viseshb",
   },
 ];
 
 const Work = () => {
+  const sectionRef = useRef<HTMLDivElement | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) {
+          setCurrentIndex(0);
+          setIsAnimating(false);
+        }
+      },
+      { threshold: 0 }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   const goToSlide = useCallback(
     (index: number) => {
@@ -63,7 +81,7 @@ const Work = () => {
   }, [currentIndex, goToSlide]);
 
   return (
-    <div className="work-section" id="work">
+    <div ref={sectionRef} className="work-section" id="work">
       <div className="work-container section-container">
         <h2>
           My <span>Work</span>
@@ -96,17 +114,17 @@ const Work = () => {
                 transform: `translateX(-${currentIndex * 100}%)`,
               }}
             >
-              {projects.map((project, index) => (
-                <div className="carousel-slide" key={index}>
+              {projects.map((project) => (
+                <div className="carousel-slide" key={project.id}>
                   <div className="carousel-content">
                     <div className="carousel-info">
                       <div className="carousel-number">
-                        <h3>0{index + 1}</h3>
+                        <h3>{project.number}</h3>
                       </div>
                       <div className="carousel-details">
                         <h4>{project.title}</h4>
                         <p className="carousel-category">
-                          {project.category}
+                          {project.subtitle}
                         </p>
                         <div className="carousel-tools">
                           <span className="tools-label">Tools & Features</span>
@@ -115,7 +133,11 @@ const Work = () => {
                       </div>
                     </div>
                     <div className="carousel-image-wrapper">
-                      <WorkImage image={project.image} alt={project.title} />
+                      <WorkImage
+                        image={project.image}
+                        alt={project.title}
+                        link={project.link}
+                      />
                     </div>
                   </div>
                 </div>

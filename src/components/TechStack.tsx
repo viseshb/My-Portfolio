@@ -17,7 +17,7 @@ const techItems = [
   { label: "Node.js", image: "/images/logos/nodejs.svg" },
   { label: "Express", image: "/images/logos/express.svg" },
   { label: "MongoDB", image: "/images/logos/mongodb.svg" },
-  { label: "MySQL", image: "/images/logos/mysql.svg" },
+  { label: "MySQL", image: "/images/logos/mysql.svg", hideLabel: true },
   { label: "TypeScript", image: "/images/logos/typescript.svg" },
   { label: "JavaScript", image: "/images/logos/javascript.svg" },
   { label: "Python", image: "/images/logos/python.svg" },
@@ -29,7 +29,7 @@ const techItems = [
   { label: "GCP", image: "/images/logos/gcp.svg" },
   { label: "PyTorch", image: "/images/logos/pytorch.svg" },
   { label: "TensorFlow", image: "/images/logos/tensorflow.svg" },
-  { label: "Google Colab", image: "/images/logos/googlecolab.svg" },
+  { label: "Colab", image: "/images/logos/googlecolab.svg" },
   { label: "OpenAI", image: "/images/logos/openai.svg" },
   { label: "Claude", image: "/images/logos/claude.svg" },
   { label: "Antigravity", image: "/images/logos/antigravity.svg" },
@@ -65,12 +65,23 @@ const makeLabelTexture = (label: string) => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  ctx.font = "700 212px Segoe UI, Arial, sans-serif";
-  ctx.lineWidth = 18;
+  ctx.lineJoin = "round";
+  ctx.miterLimit = 2;
+
+  const maxLabelWidth = canvas.width * 0.84;
+  let fontSize = 212;
+  ctx.font = `700 ${fontSize}px Segoe UI, Arial, sans-serif`;
+
+  while (fontSize > 120 && ctx.measureText(label).width > maxLabelWidth) {
+    fontSize -= 6;
+    ctx.font = `700 ${fontSize}px Segoe UI, Arial, sans-serif`;
+  }
+
+  ctx.lineWidth = Math.max(10, Math.round(fontSize * 0.08));
   ctx.strokeStyle = "rgba(255, 255, 255, 0.98)";
-  ctx.strokeText(label, canvas.width / 2, canvas.height / 2 + 4);
+  ctx.strokeText(label, canvas.width / 2, canvas.height / 2);
   ctx.fillStyle = "#000000";
-  ctx.fillText(label, canvas.width / 2, canvas.height / 2 + 4);
+  ctx.fillText(label, canvas.width / 2, canvas.height / 2);
 
   const texture = new THREE.CanvasTexture(canvas);
   texture.colorSpace = THREE.SRGBColorSpace;
@@ -81,7 +92,7 @@ const makeLabelTexture = (label: string) => {
 };
 
 type SphereConfig = {
-  labelMap: THREE.Texture;
+  labelMap?: THREE.Texture;
   iconMap: THREE.Texture;
   position: [number, number, number];
   scale: number;
@@ -140,7 +151,7 @@ function SphereGeo({
     >
       <BallCollider args={[scale]} />
       <mesh scale={scale} geometry={sphereGeometry} material={sphereMaterial}>
-        <Decal position={[0, scale * 0.14, 1.02]} scale={0.94}>
+        <Decal position={[0, scale * 0.2, 1.02]} scale={0.94}>
           <meshBasicMaterial
             color="#ffffff"
             toneMapped={false}
@@ -149,7 +160,7 @@ function SphereGeo({
           />
         </Decal>
 
-        <Decal position={[0, scale * 0.14, 1.03]} scale={0.86}>
+        <Decal position={[0, scale * 0.2, 1.03]} scale={0.86}>
           <meshBasicMaterial
             map={iconMap}
             transparent
@@ -160,16 +171,18 @@ function SphereGeo({
           />
         </Decal>
 
-        <Decal position={[0, -scale * 0.78, 1.03]} scale={[1.24, 0.4, 1]}>
-          <meshBasicMaterial
-            map={labelMap}
-            transparent
-            toneMapped={false}
-            depthWrite={false}
-            polygonOffset
-            polygonOffsetFactor={-3}
-          />
-        </Decal>
+        {labelMap ? (
+          <Decal position={[-0.06, -scale * 0.78, 1.03]} scale={[1.24, 0.4, 1]}>
+            <meshBasicMaterial
+              map={labelMap}
+              transparent
+              toneMapped={false}
+              depthWrite={false}
+              polygonOffset
+              polygonOffsetFactor={-3}
+            />
+          </Decal>
+        ) : null}
       </mesh>
     </RigidBody>
   );
@@ -255,7 +268,10 @@ const TechStack = () => {
   );
 
   const labelTextures = useMemo(
-    () => techItems.map(({ label }) => makeLabelTexture(label)),
+    () =>
+      techItems.map(({ label, hideLabel }) =>
+        hideLabel ? undefined : makeLabelTexture(label)
+      ),
     []
   );
 

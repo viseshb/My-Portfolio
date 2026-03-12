@@ -49,6 +49,7 @@
   --Lsize: 145px;
   padding: 6px;
   position: relative;
+  top: -96px;
   min-width: 0px;
   min-height: 0px;
   border-radius: 100px;
@@ -376,6 +377,7 @@
 @media only screen and (min-width: 1400px) {
   .loading-wrap {
     --Lsize: 210px;
+    top: -118px;
   }
 
   .loading-button {
@@ -409,5 +411,11 @@
 
   .loader-title {
     font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .loading-wrap {
+    top: -62px;
   }
 }
