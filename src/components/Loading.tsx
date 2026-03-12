@@ -3,6 +3,7 @@ import "./styles/Loading.css";
 import { useLoading } from "../context/LoadingProvider";
 
 import Marquee from "react-fast-marquee";
+import { withBasePath } from "../utils/basePath";
 
 const preloadTasks = [
   () => import("./MainContainer"),
@@ -102,7 +103,7 @@ const Loading = ({ percent }: { percent: number }) => {
   return (
     <>
       <div className="loading-header">
-        <a href="/#" className="loader-title" data-cursor="disable">
+        <a href={withBasePath("")} className="loader-title" data-cursor="disable">
           VB
         </a>
         <div className={`loaderGame ${clicked && "loader-out"}`}>

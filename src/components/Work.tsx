@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect, useRef } from "react";
 import "./styles/Work.css";
 import WorkImage from "./WorkImage";
 import { MdArrowBack, MdArrowForward } from "react-icons/md";
+import { withBasePath } from "../utils/basePath";
 
 const projects = [
   {
@@ -10,7 +11,7 @@ const projects = [
     title: "Context-Aware AI Assistant",
     subtitle: "Developer Intelligence Platform",
     tools: "Python, MCP, LLMs, FastAPI, Postgres, GitHub, Slack",
-    image: "/projects/context-ai-assistant.png",
+    image: withBasePath("projects/context-ai-assistant.png"),
     link: "https://github.com/viseshb",
   },
   {
@@ -19,7 +20,7 @@ const projects = [
     title: "Flood Semantic Segmentation",
     subtitle: "Deep Learning Computer Vision System",
     tools: "Python, PyTorch, U-Net, CUDA, ONNX, FastAPI",
-    image: "/projects/flood-segmentation.png",
+    image: withBasePath("projects/flood-segmentation.png"),
     link: "https://github.com/viseshb",
   },
   {
@@ -28,7 +29,7 @@ const projects = [
     title: "EffiBench Code Analysis",
     subtitle: "Human vs LLM Algorithm Benchmarking",
     tools: "Python, EffiBench, Benchmarking, Runtime Analysis",
-    image: "/projects/effibench-analysis.png",
+    image: withBasePath("projects/effibench-analysis.png"),
     link: "https://github.com/viseshb",
   },
 ];

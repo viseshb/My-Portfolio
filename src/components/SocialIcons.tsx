@@ -7,6 +7,7 @@ import "./styles/SocialIcons.css";
 import { TbNotes } from "react-icons/tb";
 import { useEffect } from "react";
 import HoverLinks from "./HoverLinks";
+import { withBasePath } from "../utils/basePath";
 
 const SocialIcons = () => {
   useEffect(() => {
@@ -104,7 +105,7 @@ const SocialIcons = () => {
       </div>
       <a
         className="resume-button"
-        href="/resume/Visesh_Bentula_Resume.pdf"
+        href={withBasePath("resume/Visesh_Bentula_Resume.pdf")}
         target="_blank"
         rel="noreferrer"
       >
