@@ -201,7 +201,6 @@
   width: 100%;
   max-width: min(100%, 860px);
   overflow: hidden;
-  margin: 0 auto;
 }
 
 .work-link {
@@ -248,7 +247,6 @@
   max-height: 420px;
   object-fit: contain;
   border-radius: 8px;
-  margin: 0 auto;
 }
 
 /* ── Responsive ── */
@@ -289,6 +287,12 @@
 }
 
 @media only screen and (max-width: 1025px) {
+  .carousel-track-container,
+  .carousel-slide,
+  .carousel-content {
+    overflow: hidden;
+  }
+
   .carousel-content {
     flex-direction: column;
     gap: 30px;
@@ -351,14 +355,16 @@
     gap: 16px;
   }
 
+  .carousel-image-wrapper,
   .work-image,
-  .work-image-in,
-  .work-image img {
+  .work-image-in {
+    width: 100%;
     max-width: 100%;
+    min-width: 0;
   }
 
-  .work-image-in {
-    width: min(100%, calc(100vw - 30px));
+  .work-image {
+    justify-content: stretch;
   }
 
   .work-image img {
