@@ -201,6 +201,7 @@
   width: 100%;
   max-width: min(100%, 860px);
   overflow: hidden;
+  margin: 0 auto;
 }
 
 .work-link {
@@ -247,6 +248,7 @@
   max-height: 420px;
   object-fit: contain;
   border-radius: 8px;
+  margin: 0 auto;
 }
 
 /* ── Responsive ── */
@@ -349,9 +351,21 @@
     gap: 16px;
   }
 
+  .work-image,
+  .work-image-in,
+  .work-image img {
+    max-width: 100%;
+  }
+
+  .work-image-in {
+    width: min(100%, calc(100vw - 30px));
+  }
+
   .work-image img {
     width: 100%;
-    max-height: 300px;
+    height: auto;
+    max-height: none;
+    aspect-ratio: auto;
   }
 }
 
