@@ -370,8 +370,9 @@
   .work-image img {
     width: 100%;
     height: auto;
-    max-height: none;
+    max-height: clamp(190px, 52vw, 300px);
     aspect-ratio: auto;
+    margin: 0 auto;
   }
 }
 
