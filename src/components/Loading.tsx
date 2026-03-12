@@ -1,37 +1,94 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./styles/Loading.css";
 import { useLoading } from "../context/LoadingProvider";
 
 import Marquee from "react-fast-marquee";
+
+const preloadTasks = [
+  () => import("./MainContainer"),
+  () => import("./Character"),
+  () => import("./TechStack"),
+];
 
 const Loading = ({ percent }: { percent: number }) => {
   const { setIsLoading } = useLoading();
   const [loaded, setLoaded] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [clicked, setClicked] = useState(false);
-
-  if (percent >= 100) {
-    setTimeout(() => {
-      setLoaded(true);
-      setTimeout(() => {
-        setIsLoaded(true);
-      }, 1000);
-    }, 600);
-  }
+  const [preloadedCount, setPreloadedCount] = useState(0);
+  const initialFxPromiseRef =
+    useRef<Promise<typeof import("./utils/initialFX")> | null>(null);
+  const preloadReady = preloadedCount >= preloadTasks.length;
+  const preloadGate = preloadReady
+    ? 100
+    : 92 + Math.min(7, Math.floor((preloadedCount / preloadTasks.length) * 8));
+  const displayPercent = Math.min(percent, preloadGate);
 
   useEffect(() => {
-    import("./utils/initialFX").then((module) => {
-      if (isLoaded) {
-        setClicked(true);
-        setTimeout(() => {
-          if (module.initialFX) {
-            module.initialFX();
+    let cancelled = false;
+
+    initialFxPromiseRef.current = import("./utils/initialFX");
+    initialFxPromiseRef.current.catch(() => null);
+    preloadTasks.forEach((loadTask) => {
+      loadTask()
+        .catch(() => null)
+        .finally(() => {
+          if (!cancelled) {
+            setPreloadedCount((count) => count + 1);
           }
-          setIsLoading(false);
-        }, 900);
-      }
+        });
     });
-  }, [isLoaded]);
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (displayPercent < 100 || loaded) {
+      return;
+    }
+
+    const loadedTimer = window.setTimeout(() => {
+      setLoaded(true);
+    }, 600);
+
+    return () => {
+      window.clearTimeout(loadedTimer);
+    };
+  }, [displayPercent, loaded]);
+
+  useEffect(() => {
+    if (!loaded || isLoaded) {
+      return;
+    }
+
+    const readyTimer = window.setTimeout(() => {
+      setIsLoaded(true);
+    }, 1000);
+
+    return () => {
+      window.clearTimeout(readyTimer);
+    };
+  }, [isLoaded, loaded]);
+
+  useEffect(() => {
+    if (!isLoaded) {
+      return;
+    }
+
+    setClicked(true);
+    const exitTimer = window.setTimeout(async () => {
+      const module =
+        (await initialFxPromiseRef.current) ?? (await import("./utils/initialFX"));
+      module.initialFX?.();
+      setIsLoading(false);
+    }, 900);
+
+    return () => {
+      window.clearTimeout(exitTimer);
+    };
+  }, [isLoaded, setIsLoading]);
 
   function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
     const { currentTarget: target } = e;
@@ -77,7 +134,7 @@ const Loading = ({ percent }: { percent: number }) => {
             <div className="loading-container">
               <div className="loading-content">
                 <div className="loading-content-in">
-                  Loading <span>{percent}%</span>
+                  Loading <span>{displayPercent}%</span>
                 </div>
               </div>
               <div className="loading-box"></div>
