@@ -12,7 +12,7 @@ const projects = [
     subtitle: "Developer Intelligence Platform",
     tools: "Python, MCP, LLMs, FastAPI, Postgres, GitHub, Slack",
     image: withBasePath("projects/context-ai-assistant.png"),
-    link: "https://github.com/viseshb",
+    link: "https://github.com/viseshb/context-aware-ai-assistant",
   },
   {
     id: "flood-segmentation",
@@ -21,7 +21,7 @@ const projects = [
     subtitle: "Deep Learning Computer Vision System",
     tools: "Python, PyTorch, U-Net, CUDA, ONNX, FastAPI",
     image: withBasePath("projects/flood-segmentation.png"),
-    link: "https://github.com/viseshb",
+    link: "https://github.com/viseshb/flood-semantic-segmentation",
   },
   {
     id: "effibench-analysis",
@@ -30,7 +30,7 @@ const projects = [
     subtitle: "Human vs LLM Algorithm Benchmarking",
     tools: "Python, EffiBench, Benchmarking, Runtime Analysis",
     image: withBasePath("projects/effibench-analysis.png"),
-    link: "https://github.com/viseshb",
+    link: "https://github.com/viseshb/Analyzing_Binary_Search_Problem_Solutions_Comparing_Human_vs_LLM_generated_Code_Using_EffiBench",
   },
 ];
 
