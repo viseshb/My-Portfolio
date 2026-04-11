@@ -2,25 +2,25 @@ import "./styles/Career.css";
 
 const careerTimeline = [
   {
-    role: "Software Engineer",
-    company: "Buoyant Software Solutions",
+    role: "Associate Member of Technical Staff",
+    company: "Salesforce",
     dates: "Jan 2024 - Dec 2024",
     summary:
-      "Designed and delivered ERP backend modules integrating CADMATIC engineering data with relational systems across 16 departments. Improved SQL performance from about 8s to 350ms and built Dockerized CI/CD workflows with testing, rollback support, and release validation.",
+      "Cut SQL latency from 8s to 350ms on PostgreSQL serving 850K+ records/day across 16 departments. Improved ML model-serving API throughput 45% with Docker, Redis caching, and CI/CD via GitHub Actions. Zero Sev-1 incidents over 12 months using ELK stack, Kubernetes, and Kafka.",
   },
-  {
-    role: "Software Developer",
+ {
+    role: "Software Developer – AI & Data Platforms",
     company: "Syra Health",
     dates: "Aug 2023 - Jan 2024",
     summary:
-      "Developed cloud backend services for real-time ingestion, search, and monitoring in a healthcare platform. Reduced request latency by about 25% through query tuning and endpoint optimization, and automated build and deployment workflows to shorten release cycles.",
+      "Built real-time healthcare data pipelines using Kafka, PostgreSQL, and Elasticsearch, exposing data through GraphQL APIs to power predictive models for health risk assessment and fraud detection. Reduced API latency 25% and increased user engagement 20% with React dashboards.",
   },
   {
     role: "Software Development Intern",
-    company: "RADCube",
+    company: "RADcube",
     dates: "Jan 2023 - Apr 2023",
     summary:
-      "Implemented Java backend components using JDBC and built MERN-based prototypes integrating REST APIs and structured data. Strengthened hands-on experience in object-oriented design, API integration, and collaborative engineering delivery.",
+      "Cut development time 25% by building modular Java backend services with Spring Boot and designing REST APIs with clean separation of concerns. Developed MERN-based components to support end-to-end data flow across the platform.",
   },
 ];
 
