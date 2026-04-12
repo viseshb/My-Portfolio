@@ -2,8 +2,8 @@ import "./styles/Career.css";
 
 const careerTimeline = [
   {
-    role: "Associate Member of Technical Staff",
-    company: "Salesforce",
+    role: "Software Engineer",
+    company: "Thermal Systems (Hyderabad) Pvt. Ltd.",
     dates: "Jan 2024 - Dec 2024",
     summary:
       "Cut SQL latency from 8s to 350ms on PostgreSQL serving 850K+ records/day across 16 departments. Improved ML model-serving API throughput 45% with Docker, Redis caching, and CI/CD via GitHub Actions. Zero Sev-1 incidents over 12 months using ELK stack, Kubernetes, and Kafka.",
