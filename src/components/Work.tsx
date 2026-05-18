@@ -6,8 +6,18 @@ import { withBasePath } from "../utils/basePath";
 
 const projects = [
   {
-    id: "context-ai",
+    id: "vibequorum",
     number: "01",
+    title: "VibeQuorum",
+    subtitle: "Multi-Agent AI Council for Product Planning",
+    tools:
+      "FastAPI, LangGraph, Next.js 15, TypeScript, OpenRouter, Stripe, SQLAlchemy",
+    image: withBasePath("projects/vibequorum.png"),
+    link: "https://vibequorum.app",
+  },
+  {
+    id: "context-ai",
+    number: "02",
     title: "Context-Aware AI Assistant",
     subtitle: "Developer Intelligence Platform",
     tools: "Python, MCP, LLMs, FastAPI, Postgres, GitHub, Slack",
@@ -16,7 +26,7 @@ const projects = [
   },
   {
     id: "flood-segmentation",
-    number: "02",
+    number: "03",
     title: "Flood Semantic Segmentation",
     subtitle: "Deep Learning Computer Vision System",
     tools: "Python, PyTorch, U-Net, CUDA, ONNX, FastAPI",
@@ -25,7 +35,7 @@ const projects = [
   },
   {
     id: "effibench-analysis",
-    number: "03",
+    number: "04",
     title: "EffiBench Code Analysis",
     subtitle: "Human vs LLM Algorithm Benchmarking",
     tools: "Python, EffiBench, Benchmarking, Runtime Analysis",
