@@ -10,7 +10,41 @@ import {
 } from "@react-three/rapier";
 import { withBasePath } from "../utils/basePath";
 
-const textureLoader = new THREE.TextureLoader();
+const ICON_TEXTURE_SIZE = 512;
+
+const createIconTexture = (src: string) => {
+  const canvas = document.createElement("canvas");
+  canvas.width = ICON_TEXTURE_SIZE;
+  canvas.height = ICON_TEXTURE_SIZE;
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.anisotropy = 4;
+  texture.flipY = false;
+
+  const img = new Image();
+  img.crossOrigin = "anonymous";
+  img.decoding = "async";
+  img.onload = () => {
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const naturalW = img.naturalWidth || ICON_TEXTURE_SIZE;
+    const naturalH = img.naturalHeight || ICON_TEXTURE_SIZE;
+    const scale = Math.min(
+      canvas.width / naturalW,
+      canvas.height / naturalH
+    );
+    const drawW = naturalW * scale;
+    const drawH = naturalH * scale;
+    const dx = (canvas.width - drawW) / 2;
+    const dy = (canvas.height - drawH) / 2;
+    ctx.drawImage(img, dx, dy, drawW, drawH);
+    texture.needsUpdate = true;
+  };
+  img.src = src;
+
+  return texture;
+};
 
 const techItems = [
   { label: "React", image: withBasePath("images/logos/react.svg") },
@@ -93,14 +127,7 @@ const techStackGroups = [
   },
 ];
 
-const iconTextures = techItems.map(({ image }) => {
-  const texture = textureLoader.load(image);
-  texture.colorSpace = THREE.SRGBColorSpace;
-  texture.anisotropy = 4;
-  texture.flipY = false;
-  texture.needsUpdate = true;
-  return texture;
-});
+const iconTextures = techItems.map(({ image }) => createIconTexture(image));
 
 const sphereGeometry = new THREE.SphereGeometry(1, 18, 18);
 
