@@ -122,11 +122,16 @@ const Work = () => {
             <div
               className="carousel-track"
               style={{
-                transform: `translateX(-${currentIndex * 100}%)`,
+                width: `${projects.length * 100}%`,
+                transform: `translateX(-${(currentIndex * 100) / projects.length}%)`,
               }}
             >
               {projects.map((project) => (
-                <div className="carousel-slide" key={project.id}>
+                <div
+                  className="carousel-slide"
+                  key={project.id}
+                  style={{ width: `${100 / projects.length}%` }}
+                >
                   <div className="carousel-content">
                     <div className="carousel-info">
                       <div className="carousel-number">

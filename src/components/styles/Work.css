@@ -41,8 +41,7 @@
 }
 
 .carousel-slide {
-  min-width: 100%;
-  flex-shrink: 0;
+  flex: 0 0 auto;
   box-sizing: border-box;
   padding: 50px 0;
 }
