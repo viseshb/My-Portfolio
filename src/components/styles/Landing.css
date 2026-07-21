@@ -175,7 +175,7 @@
   left: 0;
 }
 
-.landing-intro h2 {
+.landing-intro .landing-greeting {
   margin: 0;
   color: var(--accentColor);
   font-size: 22px;
@@ -275,7 +275,7 @@ h2.landing-info-h2 {
     font-size: 18px;
   }
 
-  .landing-intro h2 {
+  .landing-intro .landing-greeting {
     font-size: 18px;
   }
 
@@ -299,7 +299,7 @@ h2.landing-info-h2 {
     height: 80vh;
   }
 
-  .landing-intro h2 {
+  .landing-intro .landing-greeting {
     font-size: 25px;
   }
 
@@ -373,7 +373,7 @@ h2.landing-info-h2 {
 }
 
 @media screen and (min-width: 1600px) {
-  .landing-intro h2 {
+  .landing-intro .landing-greeting {
     font-size: 35px;
   }
 

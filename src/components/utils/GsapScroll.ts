@@ -36,34 +36,43 @@ export function setCharTimeline(
       invalidateOnRefresh: true,
     },
   });
-  let screenLight: any, monitor: any;
-  character?.children.forEach((object: any) => {
+  let screenLight: THREE.Mesh | null = null;
+  let monitor: THREE.Mesh | null = null;
+  character?.children.forEach((object) => {
     if (object.name === "Plane004") {
-      object.children.forEach((child: any) => {
-        child.material.transparent = true;
-        child.material.opacity = 0;
-        if (child.material.name === "Material.018") {
-          monitor = child;
-          child.material.color.set("#FFFFFF");
+      object.children.forEach((child) => {
+        const mesh = child as THREE.Mesh;
+        if (!mesh.isMesh || Array.isArray(mesh.material)) return;
+        const material = mesh.material as THREE.MeshStandardMaterial;
+        material.transparent = true;
+        material.opacity = 0;
+        if (material.name === "Material.018") {
+          monitor = mesh;
+          material.color.set("#FFFFFF");
         }
       });
     }
     if (object.name === "screenlight") {
-      object.material.transparent = true;
-      object.material.opacity = 0;
-      object.material.emissive.set("#B0F5EA");
-      gsap.timeline({ repeat: -1, repeatRefresh: true }).to(object.material, {
+      const mesh = object as THREE.Mesh;
+      if (!mesh.isMesh || Array.isArray(mesh.material)) return;
+      const material = mesh.material as THREE.MeshStandardMaterial;
+      material.transparent = true;
+      material.opacity = 0;
+      material.emissive.set("#B0F5EA");
+      gsap.timeline({ repeat: -1, repeatRefresh: true }).to(material, {
         emissiveIntensity: () => intensity * 8,
         duration: () => Math.random() * 0.6,
         delay: () => Math.random() * 0.1,
       });
-      screenLight = object;
+      screenLight = mesh;
     }
   });
-  let neckBone = character?.getObjectByName("spine005");
+  const neckBone = character?.getObjectByName("spine005");
+  if (!character || !neckBone || !monitor || !screenLight) return;
+  const monitorMesh = monitor as THREE.Mesh;
+  const screenLightMesh = screenLight as THREE.Mesh;
   if (window.innerWidth > 1024) {
-    if (character) {
-      tl1
+    tl1
         .fromTo(character.rotation, { y: 0 }, { y: 0.7, duration: 1 }, 0)
         .to(camera.position, { z: 22 }, 0)
         .fromTo(".character-model", { x: 0 }, { x: "-25%", duration: 1 }, 0)
@@ -71,7 +80,7 @@ export function setCharTimeline(
         .to(".landing-container", { y: "40%", duration: 0.8 }, 0)
         .fromTo(".about-me", { y: "-50%" }, { y: "0%" }, 0);
 
-      tl2
+    tl2
         .to(
           camera.position,
           { z: 75, y: 8.4, duration: 6, delay: 2, ease: "power3.inOut" },
@@ -87,8 +96,8 @@ export function setCharTimeline(
         )
         .to(character.rotation, { y: 0.92, x: 0.12, delay: 3, duration: 3 }, 0)
         .to(neckBone!.rotation, { x: 0.6, delay: 2, duration: 3 }, 0)
-        .to(monitor.material, { opacity: 1, duration: 0.8, delay: 3.2 }, 0)
-        .to(screenLight.material, { opacity: 1, duration: 0.8, delay: 4.5 }, 0)
+        .to(monitorMesh.material, { opacity: 1, duration: 0.8, delay: 3.2 }, 0)
+        .to(screenLightMesh.material, { opacity: 1, duration: 0.8, delay: 4.5 }, 0)
         .fromTo(
           ".what-box-in",
           { display: "none" },
@@ -96,7 +105,7 @@ export function setCharTimeline(
           0
         )
         .fromTo(
-          monitor.position,
+          monitorMesh.position,
           { y: -10, z: 2 },
           { y: 0, z: 0, delay: 1.5, duration: 3 },
           0
@@ -108,7 +117,7 @@ export function setCharTimeline(
           0.3
         );
 
-      tl3
+    tl3
         .fromTo(
           ".character-model",
           { y: "0%" },
@@ -117,18 +126,15 @@ export function setCharTimeline(
         )
         .fromTo(".whatIDO", { y: 0 }, { y: "15%", duration: 2 }, 0)
         .to(character.rotation, { x: -0.04, duration: 2, delay: 1 }, 0);
-    }
   } else {
-    if (character) {
-      const tM2 = gsap.timeline({
+    const tM2 = gsap.timeline({
         scrollTrigger: {
           trigger: ".what-box-in",
           start: "top 70%",
           end: "bottom top",
         },
-      });
-      tM2.to(".what-box-in", { display: "flex", duration: 0.1, delay: 0 }, 0);
-    }
+    });
+    tM2.to(".what-box-in", { display: "flex", duration: 0.1, delay: 0 }, 0);
   }
 }
 

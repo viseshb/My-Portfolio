@@ -40,23 +40,34 @@ a.contact-social {
   border-bottom: 1px solid #ccc;
 }
 
-.contact-box h2 {
+.contact-credit {
   font-weight: 400;
   font-size: 23px;
   margin: 0;
 }
 
-.contact-box h2>span {
+.contact-credit>span {
   color: var(--accentColor);
 }
 
-.contact-box h5 {
+.contact-built-with {
+  margin: 12px 0 0;
+  font-size: 14px;
+  opacity: 0.55;
+}
+
+.contact-copyright {
   font-size: 20px;
   font-weight: 500;
   line-height: 20px;
   display: flex;
-  gap: 10px;
+  gap: 8px;
+  margin: 22px 0 0;
   opacity: 0.5;
+}
+
+.contact-copyright svg {
+  flex: 0 0 auto;
 }
 
 @media only screen and (max-width: 1600px) {
@@ -64,7 +75,7 @@ a.contact-social {
     font-size: 50px;
   }
 
-  .contact-box h2 {
+  .contact-credit {
     font-size: 20px;
   }
 
@@ -78,7 +89,7 @@ a.contact-social {
     font-size: 40px;
   }
 
-  .contact-box h2 {
+  .contact-credit {
     font-size: 18px;
   }
 
@@ -108,6 +119,10 @@ a.contact-social {
   .contact-section {
     margin-top: 50px;
     padding-bottom: 50px;
+  }
+
+  .contact-built-with {
+    margin-top: 8px;
   }
 
   .contact-container {

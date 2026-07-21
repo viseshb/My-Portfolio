@@ -2,25 +2,25 @@ import "./styles/Career.css";
 
 const careerTimeline = [
   {
+    role: "Software Development Intern",
+    company: "Digifyde",
+    dates: "Jun 2026 - Present",
+    summary:
+      "Built Orion's Agent Harness to centralize LLM agents, prompts, tools, and workflows across AI-powered features. Added Orion data mapping plus PII redaction and filtering guardrails with role-based access control to keep sensitive client data away from external LLMs. Built full-stack AI features across PostgreSQL and MongoDB using a Bronze/Silver/Gold medallion pipeline, while partnering with clients to refine prompts and improve generated results.",
+  },
+  {
     role: "Software Engineer",
-    company: "Thermal Systems (Hyderabad) Pvt. Ltd.",
+    company: "Thermal Systems",
     dates: "Jan 2024 - Dec 2024",
     summary:
-      "Cut SQL latency from 8s to 350ms on PostgreSQL serving 850K+ records/day across 16 departments. Improved ML model-serving API throughput 45% with Docker, Redis caching, and CI/CD via GitHub Actions. Zero Sev-1 incidents over 12 months using ELK stack, Kubernetes, and Kafka.",
+      "Reduced ERP reporting latency across 16 departments from 8 seconds to 350 milliseconds over 850K+ daily records by optimizing PostgreSQL execution plans, indexes, joins, partitions, and Redis caching. Increased production ML inference API throughput 45% with Docker on AWS, Redis, input batching, and horizontal scaling. Reduced Sev-1 recovery time for Kafka microservices from 4 hours to under 30 minutes with Prometheus, Grafana, ELK, Kubernetes health checks, and recovery workflows.",
   },
- {
-    role: "Software Developer – AI & Data Platforms",
+  {
+    role: "Software Developer - AI & Data Platforms",
     company: "Syra Health",
     dates: "Aug 2023 - Jan 2024",
     summary:
-      "Built real-time healthcare data pipelines using Kafka, PostgreSQL, and Elasticsearch, exposing data through GraphQL APIs to power predictive models for health risk assessment and fraud detection. Reduced API latency 25% and increased user engagement 20% with React dashboards.",
-  },
-  {
-    role: "Software Development Intern",
-    company: "RADcube",
-    dates: "Jan 2023 - Apr 2023",
-    summary:
-      "Cut development time 25% by building modular Java backend services with Spring Boot and designing REST APIs with clean separation of concerns. Developed MERN-based components to support end-to-end data flow across the platform.",
+      "Built real-time healthcare data pipelines using Kafka, PostgreSQL, Elasticsearch, and GraphQL for risk-assessment and fraud-detection models supporting 220K+ users. Reduced release time 40% with GitHub Actions and Docker CI/CD, zero-downtime deployments, and automated rollbacks; React dashboards increased user engagement 20%.",
   },
 ];
 
@@ -29,19 +29,19 @@ const Career = () => {
     <div className="career-section section-container">
       <div className="career-container">
         <h2>
-          My career <span>&</span>
+          My career <span>&amp;</span>
           <br /> experience
         </h2>
         <div className="career-info">
-          <div className="career-timeline">
+          <div className="career-timeline" aria-hidden="true">
             <div className="career-dot"></div>
           </div>
           {careerTimeline.map((item) => (
             <div className="career-info-box" key={`${item.role}-${item.dates}`}>
               <div className="career-info-in">
                 <div className="career-role">
-                  <h4>{item.role}</h4>
-                  <h5>{item.company}</h5>
+                  <h3>{item.role}</h3>
+                  <h4>{item.company}</h4>
                   <span className="career-date">{item.dates}</span>
                 </div>
               </div>

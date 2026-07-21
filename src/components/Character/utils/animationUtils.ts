@@ -3,8 +3,8 @@ import { GLTF } from "three-stdlib";
 import { eyebrowBoneNames, typingBoneNames } from "../../../data/boneData";
 
 const setAnimations = (gltf: GLTF) => {
-  let character = gltf.scene;
-  let mixer = new THREE.AnimationMixer(character);
+  const character = gltf.scene;
+  const mixer = new THREE.AnimationMixer(character);
   if (gltf.animations) {
     const introClip = gltf.animations.find(
       (clip) => clip.name === "introAnimation"
@@ -24,8 +24,7 @@ const setAnimations = (gltf: GLTF) => {
         console.error(`Animation "${name}" not found`);
       }
     });
-    let typingAction: THREE.AnimationAction | null = null;
-    typingAction = createBoneAction(gltf, mixer, "typing", typingBoneNames);
+    const typingAction = createBoneAction(gltf, mixer, "typing", typingBoneNames);
     if (typingAction) {
       typingAction.enabled = true;
       typingAction.play();
@@ -45,7 +44,7 @@ const setAnimations = (gltf: GLTF) => {
     }, 2500);
   }
   function hover(gltf: GLTF, hoverDiv: HTMLDivElement) {
-    let eyeBrowUpAction = createBoneAction(
+    const eyeBrowUpAction = createBoneAction(
       gltf,
       mixer,
       "browup",

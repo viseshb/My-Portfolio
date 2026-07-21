@@ -98,7 +98,12 @@ const Work = () => {
           My <span>Work</span>
         </h2>
 
-        <div className="carousel-wrapper">
+        <div
+          className="carousel-wrapper"
+          role="region"
+          aria-roledescription="carousel"
+          aria-label="Selected work"
+        >
           {/* Navigation Arrows */}
           <button
             className="carousel-arrow carousel-arrow-left"

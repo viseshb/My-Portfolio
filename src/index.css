@@ -15,9 +15,6 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
   --accentColor: #5eead4;
   --backgroundColor: #0a0e17;
   --vh: 100vh;
@@ -134,6 +131,25 @@ body {
   font-weight: 400;
   text-transform: uppercase;
   color: #ece8ee;
+}
+
+@media screen and (max-width: 499px) {
+  .landing-info {
+    right: 16px;
+    left: auto;
+    width: calc(100% - 106px);
+    transform: none;
+    bottom: 112px;
+  }
+
+  .landing-info h2 {
+    margin-left: 0;
+  }
+
+  h2.landing-info-h2 {
+    width: 100%;
+    font-size: clamp(30px, 9vw, 40px);
+  }
 }
 
 .techstack-placeholder {

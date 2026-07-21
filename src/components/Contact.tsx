@@ -15,42 +15,51 @@ const Contact = () => {
               </a>
             </p>
             <h4>Education</h4>
-            <p>Masters in Computer Science, US</p>
+            <p>
+              MS in Computer Science, Texas A&amp;M University,
+              Graduated May 2026
+            </p>
           </div>
           <div className="contact-box">
             <h4>Social</h4>
             <a
               href="https://github.com/viseshb"
               target="_blank"
+              rel="noopener noreferrer"
               data-cursor="disable"
               className="contact-social"
             >
-              Github <MdArrowOutward />
+              Github <MdArrowOutward aria-hidden="true" />
             </a>
             <a
               href="https://www.linkedin.com/in/viseshb"
               target="_blank"
+              rel="noopener noreferrer"
               data-cursor="disable"
               className="contact-social"
             >
-              Linkedin <MdArrowOutward />
+              Linkedin <MdArrowOutward aria-hidden="true" />
             </a>
             <a
               href="https://www.instagram.com/visesh_visu/"
               target="_blank"
+              rel="noopener noreferrer"
               data-cursor="disable"
               className="contact-social"
             >
-              Instagram <MdArrowOutward />
+              Instagram <MdArrowOutward aria-hidden="true" />
             </a>
           </div>
           <div className="contact-box">
-            <h2>
-              Designed and Developed <br /> by <span>Visesh Bentula</span>
-            </h2>
-            <h5>
-              <MdCopyright /> 2026
-            </h5>
+          <p className="contact-credit">
+            Made with love ❤️ by <span>Visesh Bentula</span>
+          </p>
+            <p className="contact-built-with">
+              Built with React, TypeScript &amp; Three.js
+            </p>
+            <p className="contact-copyright">
+              <MdCopyright aria-hidden="true" /> 2026 Visesh Bentula
+            </p>
           </div>
         </div>
       </div>

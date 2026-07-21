@@ -52,7 +52,6 @@ const techItems = [
   { label: "Node.js", image: withBasePath("images/logos/nodejs.svg") },
   { label: "Express", image: withBasePath("images/logos/express.svg") },
   { label: "MongoDB", image: withBasePath("images/logos/mongodb.svg") },
-  { label: "MySQL", image: withBasePath("images/logos/mysql.svg"), hideLabel: true },
   { label: "TypeScript", image: withBasePath("images/logos/typescript.svg") },
   { label: "JavaScript", image: withBasePath("images/logos/javascript.svg") },
   { label: "Python", image: withBasePath("images/logos/python.svg") },
@@ -63,13 +62,9 @@ const techItems = [
   { label: "AWS", image: withBasePath("images/logos/aws.svg") },
   { label: "GCP", image: withBasePath("images/logos/gcp.svg") },
   { label: "PyTorch", image: withBasePath("images/logos/pytorch.svg") },
-  { label: "TensorFlow", image: withBasePath("images/logos/tensorflow.svg") },
-  { label: "Colab", image: withBasePath("images/logos/googlecolab.svg") },
   { label: "OpenAI", image: withBasePath("images/logos/openai.svg") },
   { label: "Claude", image: withBasePath("images/logos/claude.svg") },
-  { label: "Antigravity", image: withBasePath("images/logos/antigravity.svg") },
   { label: "HuggingFace", image: withBasePath("images/logos/huggingface.svg") },
-  { label: "LangChain", image: withBasePath("images/logos/langchain.svg") },
   { label: "Kafka", image: withBasePath("images/logos/kafka.svg") },
 ].filter(
   (item, index, items) =>
@@ -83,45 +78,66 @@ const techStackGroups = [
       "React",
       "Next.js",
       "TypeScript",
-      "JavaScript",
-      "Responsive UI Systems",
+      "Tailwind CSS",
+      "Electron",
     ],
   },
   {
     title: "Backend",
     items: [
       "Node.js",
-      "Express",
+      "Express.js",
       "FastAPI",
-      "REST API Design",
-      "Distributed Services",
+      "REST APIs",
+      "GraphQL",
+      "WebSockets",
+      "Webhooks",
     ],
   },
   {
     title: "AI / ML",
     items: [
       "OpenAI APIs",
-      "Claude",
+      "Anthropic APIs",
       "PyTorch",
-      "TensorFlow",
-      "Hugging Face",
+      "LLMs and RAG Pipelines",
+      "Multi-Agent Orchestration",
+      "LangGraph",
+      "MCP Server Development",
+      "PII Redaction and Guardrails",
     ],
   },
   {
     title: "Data",
-    items: ["PostgreSQL", "MongoDB", "MySQL", "Redis", "Kafka"],
+    items: [
+      "PostgreSQL",
+      "MongoDB",
+      "Redis",
+      "pgvector",
+      "Elasticsearch",
+      "Kafka",
+      "Medallion Architecture",
+    ],
   },
   {
     title: "Cloud / DevOps",
-    items: ["Docker", "AWS", "GCP", "CI/CD Pipelines", "Linux Workflows"],
+    items: [
+      "Docker",
+      "Kubernetes",
+      "AWS EC2 / EKS / Lambda",
+      "GCP Cloud Run",
+      "Supabase",
+      "GitHub Actions CI/CD",
+    ],
   },
   {
     title: "Engineering",
     items: [
       "System Design",
+      "Microservices",
+      "JWT / OAuth / RBAC",
+      "Vector Databases",
       "Performance Tuning",
-      "Testing",
-      "MCP Integrations",
       "Production Debugging",
     ],
   },
@@ -348,9 +364,7 @@ const TechStack = () => {
 
   const labelTextures = useMemo(
     () =>
-      techItems.map(({ label, hideLabel }) =>
-        hideLabel ? undefined : makeLabelTexture(label)
-      ),
+      techItems.map(({ label }) => makeLabelTexture(label)),
     []
   );
 
@@ -372,7 +386,7 @@ const TechStack = () => {
   return (
     <div ref={sectionRef} className="techstack">
       <div className="techstack-stage">
-        <h2> My Techstack</h2>
+        <h2> My Tech Stack</h2>
 
         <Canvas
           className="tech-canvas"
@@ -421,7 +435,7 @@ const TechStack = () => {
       <div className="techstack-details section-container" id="skills">
         <div className="techstack-details-copy">
           <span className="techstack-eyebrow">Core Stack</span>
-          <h3>Core technologies used for AI/ML and backend systems.</h3>
+          <h3>Core technologies used for AI/ML, backend systems, and cloud deployment.</h3>
           <p>
             Focused on building scalable backend platforms and intelligent AI
             systems. The stack includes modern API frameworks, distributed

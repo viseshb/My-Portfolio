@@ -29,11 +29,12 @@ const WorkImage = (props: Props) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={() => setIsVideo(false)}
         target="_blank"
+        rel="noopener noreferrer"
         data-cursor={"disable"}
       >
         {props.link && (
           <div className="work-link">
-            <MdArrowOutward />
+            <MdArrowOutward aria-hidden="true" />
           </div>
         )}
         <img src={props.image} alt={props.alt} />

@@ -5,13 +5,13 @@ import { gsap } from "gsap";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import "./styles/Navbar.css";
 import { withBasePath } from "../utils/basePath";
+import { setSmoother } from "./utils/smoother";
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
-export let smoother: ScrollSmoother;
 
 const Navbar = () => {
   useEffect(() => {
-    smoother = ScrollSmoother.create({
+    const smoother = ScrollSmoother.create({
       wrapper: "#smooth-wrapper",
       content: "#smooth-content",
       smooth: 1.7,
@@ -20,6 +20,7 @@ const Navbar = () => {
       autoResize: true,
       ignoreMobileResize: true,
     });
+    setSmoother(smoother);
 
     smoother.scrollTop(0);
     smoother.paused(true);
@@ -34,8 +35,8 @@ const Navbar = () => {
       const onClick = (e: MouseEvent) => {
         if (window.innerWidth > 1024) {
           e.preventDefault();
-          let elem = e.currentTarget as HTMLAnchorElement;
-          let section = elem.getAttribute("data-href");
+          const elem = e.currentTarget as HTMLAnchorElement;
+          const section = elem.getAttribute("data-href");
           smoother.scrollTo(section, true, "top top");
         }
       };
@@ -54,6 +55,7 @@ const Navbar = () => {
       });
       window.removeEventListener("resize", onResize);
       smoother?.kill();
+      setSmoother(null);
     };
   }, []);
   return (
@@ -69,7 +71,7 @@ const Navbar = () => {
         >
           visesh66@gmail.com
         </a>
-        <ul>
+        <ul aria-label="Primary navigation">
           <li>
             <a data-href="#about" href="#about">
               <HoverLinks text="ABOUT" />
